@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ISO-8859-15"?>
+<OX>
+    <OXMENU id="navi_rs_company">
+      <MAINMENU id="navi_rs_cronjobmanager">
+        <SUBMENU id="navi_rs_cronjobmanager_taskmanager" cl="rs_formedit_fullpage" clparam="project=rs/cronjobmanager/formeditprojects/cpcronjobs.cpf" />
+        <SUBMENU id="navi_rs_cronjobmanager_queue" cl="rs_formedit_fullpage" clparam="project=rs/cronjobmanager/formeditprojects/cpcronjob_queue.cpf" />
+      </MAINMENU>
+    </OXMENU>
+</OX>
