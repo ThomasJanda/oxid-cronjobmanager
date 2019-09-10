@@ -4,6 +4,9 @@
 
 Manage your cronjobs which a nice UI. Develop your cronjob in php without change server settings. Have full control and logs for each cronjob.
 
+![](view1.png)
+![](view2.png)
+
 ## Install
 
 1. Copy files into following directory
