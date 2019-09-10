@@ -7,6 +7,8 @@ Manage your cronjobs which a nice UI. Develop your cronjob in php without change
 ![](view1.png)
 ![](view2.png)
 
+This module need the "oxid-formedit", "oxid-base" repository installed in the shop.
+
 ## Install
 
 1. Copy files into following directory
