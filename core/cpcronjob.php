@@ -132,7 +132,8 @@ class cpCronjob extends \core\inc\base
      */
     protected function _getTmpPath()
     {
-        $path = $this->getConfig()->getBaseTmpDir()."cronjobs";
+        $path = $this->getConfig()->getBaseTmpDir();
+        $path = rtrim($path,"/")."/cronjobs";
         @mkdir($path);
         return $path."/";
     }
