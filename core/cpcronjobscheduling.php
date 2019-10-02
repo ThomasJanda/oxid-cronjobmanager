@@ -127,7 +127,7 @@ class cpCronjobScheduling extends \core\inc\base
                     {
                         //test if holiday
                         $holiday=$ret->format('Y-m-d');
-                        $sql_holidays = "select count(*) from cpholiday where holiday='$holiday'";
+                        $sql_holidays = "select count(*) from rsholiday where holiday='$holiday'";
                         if(getConfig()->getScalar($sql_holidays)!="0")
                         {
                             $ret->add(new \DateInterval('P1D'));

@@ -657,7 +657,7 @@ class cpCronjob extends \core\inc\base
                         {
                             //Get the holidays count of today
                             $holiday=$date->format('Y-m-d');
-                            $sql_holidays = "select count(*) from cpholiday where holiday='$holiday'";
+                            $sql_holidays = "select count(*) from rsholiday where holiday='$holiday'";
                             if($this->getConfig()->getScalar($sql_holidays)!="0")
                             {
                                 //is on holiday
@@ -711,7 +711,7 @@ class cpCronjob extends \core\inc\base
         {
             //Get the holidays count of today
             $holiday=date('Y-m-d');
-            $sql_holidays = "select count(*) from cpholiday where holiday='$holiday'";
+            $sql_holidays = "select count(*) from rsholiday where holiday='$holiday'";
             if($this->getConfig()->getScalar($sql_holidays)!="0")
             {
                 return false;
@@ -764,7 +764,7 @@ class cpCronjob extends \core\inc\base
                         {
                             //Get the holidays count of today
                             $holiday=$date->format('Y-m-d');
-                            $sql_holidays = "select count(*) from cpholiday where holiday='$holiday'";
+                            $sql_holidays = "select count(*) from rsholiday where holiday='$holiday'";
                             if($this->getConfig()->getScalar($sql_holidays)!="0")
                             {
                                 //is on holiday
