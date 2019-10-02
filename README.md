@@ -9,6 +9,10 @@ Manage your cronjobs which a nice UI. Develop your cronjob in php without change
 
 This module need the "oxid-formedit", "oxid-base" repository installed in the shop.
 
+## Requirements
+
+"oxid-basic", "oxid-formedit" module required. 
+
 ## Install
 
 1. Copy files into following directory
