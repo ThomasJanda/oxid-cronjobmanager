@@ -2,7 +2,7 @@
 
 //require __DIR__ ."/../../../../../bootstrap.php";
 
-$cpscheduling = $_REQUEST['cpscheduling_hidden'];
+$cpscheduling = $_REQUEST['cpscheduling_hidden'] ?? "";
 
 echo "Scheduling: ".$cpscheduling."<br>";
 echo "Now: ".date('Y-m-d H:i:s')."<br>";

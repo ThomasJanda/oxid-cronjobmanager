@@ -93,8 +93,8 @@ class cpCronjobScheduling extends \core\inc\base
                 $aPart[2] = str_replace("H", "W", $aPart[2]);
             }
             $sScheduling = implode(" ", $aPart);
-
-            //echo $sScheduling."<br>";
+            
+            
             try {
                 $cron = \Cron\CronExpression::factory($sScheduling);
 
@@ -109,7 +109,7 @@ class cpCronjobScheduling extends \core\inc\base
                     $ret = $cron->getNextRunDate(null, ($nth - 1));
                 }
             } catch (\Exception $e) {
-                //echo $e->getMessage();
+                echo $e->getMessage();
                 $ret = false;
             }
 

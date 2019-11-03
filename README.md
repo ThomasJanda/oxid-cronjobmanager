@@ -29,7 +29,7 @@ This module need the "oxid-formedit", "oxid-base" repository installed in the sh
     
 3. Execute following command:
 
-        composer require --no-update mtdowling/cron-expressionMN
+        composer require dragonmantank/cron-expression
 
 3. Refresh autoloader files with composer in the oxid root directory.
 
@@ -41,18 +41,18 @@ This module need the "oxid-formedit", "oxid-base" repository installed in the sh
          `cpid` char(32) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
          `cpactive` tinyint(1) NOT NULL DEFAULT 0,
          `cpcreated` datetime NOT NULL DEFAULT current_timestamp(),
-         `cptitle` varchar(250) NOT NULL COMMENT 'title of the cronjob',
-         `cpscript` varchar(1000) NOT NULL COMMENT 'relative path start from the BASE/modules folder',
-         `cpdescription` text NOT NULL COMMENT 'description what the cronjob does',
+         `cptitle` varchar(250) DEFAULT NULL COMMENT 'title of the cronjob',
+         `cpscript` varchar(1000) DEFAULT NULL COMMENT 'relative path start from the BASE/modules folder',
+         `cpdescription` text DEFAULT NULL COMMENT 'description what the cronjob does',
          `cprun_on_holiday` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'should the cronjob run on holidays',
          `cpkeep_logging_in_days` int(11) NOT NULL DEFAULT 0 COMMENT 'keep the log 5 days until clear',
          `cpignore_errors` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'Don´t stop cronjob if an error throw',
-         `f_cpcronjob_parent` char(32) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
-         `cpcurrent_pid` varchar(32) NOT NULL COMMENT 'current process id on the linux system, if cronjob was started',
-         `cpcurrent_start` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'when the current run start',
+         `f_cpcronjob_parent` char(32) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
+         `cpcurrent_pid` varchar(32) DEFAULT NULL COMMENT 'current process id on the linux system, if cronjob was started',
+         `cpcurrent_start` datetime DEFAULT NULL COMMENT 'when the current run start',
          `cpcurrent_tick` int(11) NOT NULL DEFAULT 0 COMMENT 'current tick of the current run',
-         `cplast_start` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'when the cronjob the last time start',
-         `cplast_end` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'when the last cronjob the last time end',
+         `cplast_start` datetime DEFAULT NULL COMMENT 'when the cronjob the last time start',
+         `cplast_end` datetime DEFAULT NULL COMMENT 'when the last cronjob the last time end',
          `cplast_ticks` int(11) NOT NULL DEFAULT 0 COMMENT 'how many ticks has the cronjob needed',
          `cpfinished_count` int(11) NOT NULL DEFAULT 0 COMMENT 'how often the cronjob finished',
          `cpcustom_id` varchar(250) DEFAULT '' COMMENT 'unique value to identify the cronjob',
@@ -67,7 +67,7 @@ This module need the "oxid-formedit", "oxid-base" repository installed in the sh
          `f_cpcronjob` char(32) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
          `f_cpcronjob_queue` char(32) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
          `cpcreated` datetime NOT NULL DEFAULT current_timestamp(),
-         `cptype` enum('runtime','output','error','finish') NOT NULL COMMENT 'type of the log',
+         `cptype` enum('runtime','output','error','finish') DEFAULT 'output' COMMENT 'type of the log',
          `cpsort_order` int(11) NOT NULL AUTO_INCREMENT COMMENT 'use for sorting',
          `cptick` int(11) NOT NULL DEFAULT 0 COMMENT 'that that this type occure',
          `cplog` longtext DEFAULT NULL COMMENT 'log message compressed',
@@ -82,9 +82,9 @@ This module need the "oxid-formedit", "oxid-base" repository installed in the sh
          `cpid` char(32) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
          `f_cpcronjob` char(32) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
          `cpactive` tinyint(1) NOT NULL DEFAULT 0,
-         `cpname` varchar(250) NOT NULL COMMENT 'name of the parameter',
-         `cpvalue` varchar(250) NOT NULL COMMENT 'value of the parameter',
-         `cpdescription` text NOT NULL,
+         `cpname` varchar(250) DEFAULT NULL COMMENT 'name of the parameter',
+         `cpvalue` varchar(250) DEFAULT NULL COMMENT 'value of the parameter',
+         `cpdescription` text DEFAULT NULL,
          PRIMARY KEY (`cpid`),
          KEY `f_cpcronjob` (`f_cpcronjob`),
          CONSTRAINT `cpcronjob_parameter_f_cpcronjob` FOREIGN KEY (`f_cpcronjob`) REFERENCES `cpcronjob` (`cpid`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -93,13 +93,13 @@ This module need the "oxid-formedit", "oxid-base" repository installed in the sh
         CREATE TABLE `cpcronjob_queue` (
          `cpid` char(32) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
          `f_cpcronjob` char(32) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL COMMENT 'which cronjob should call',
-         `cpparameter` text NOT NULL COMMENT 'parameter which should use (json)',
+         `cpparameter` text DEFAULT NULL COMMENT 'parameter which should use (json)',
          `cpcreated` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'when was the item created',
-         `cpcurrent_pid` varchar(32) NOT NULL COMMENT 'current process id on the linux system, if cronjob was started',
-         `cpcurrent_start` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'when the current run start',
+         `cpcurrent_pid` varchar(32) DEFAULT NULL COMMENT 'current process id on the linux system, if cronjob was started',
+         `cpcurrent_start` datetime DEFAULT NULL COMMENT 'when the current run start',
          `cpcurrent_tick` int(11) NOT NULL DEFAULT 0 COMMENT 'current tick of the current run',
          `cpcustomer_id` varchar(250) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL COMMENT 'create your own id. If id is present, the item won´t add to the queue.',
-         `cpdescription` varchar(250) NOT NULL DEFAULT '' COMMENT 'your description like the origin script',
+         `cpdescription` varchar(250) DEFAULT NULL COMMENT 'your description like the origin script',
          PRIMARY KEY (`cpid`),
          KEY `f_cpcronjob` (`f_cpcronjob`),
          KEY `cpcustomer_id` (`cpcustomer_id`),
@@ -111,7 +111,7 @@ This module need the "oxid-formedit", "oxid-base" repository installed in the sh
          `f_cpcronjob` char(32) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
          `cpcreated` datetime NOT NULL DEFAULT current_timestamp(),
          `cpactive` tinyint(1) NOT NULL DEFAULT 0,
-         `cpscheduling` varchar(100) NOT NULL COMMENT 'cronjob scheduling settings',
+         `cpscheduling` varchar(100) DEFAULT NULL COMMENT 'cronjob scheduling settings',
          PRIMARY KEY (`cpid`),
          KEY `f_cpcronjob` (`f_cpcronjob`),
          CONSTRAINT `cpcronjob_scheduling_f_cpcronjob` FOREIGN KEY (`f_cpcronjob`) REFERENCES `cpcronjob` (`cpid`) ON DELETE CASCADE ON UPDATE CASCADE
