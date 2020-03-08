@@ -29,7 +29,8 @@ This module need the "oxid-formedit", "oxid-base" repository installed in the sh
     
 3. Execute following command:
 
-        composer require dragonmantank/cron-expression
+        composer require dragonmantank/cron-expression --no-update
+        composer update --no-plugins --no-scripts --no-dev --ignore-platform-reqs
 
 3. Refresh autoloader files with composer in the oxid root directory.
 
