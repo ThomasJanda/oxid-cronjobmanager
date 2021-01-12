@@ -1,3 +1,2 @@
-#!/bin/sh
-
-/usr/local/php7.0/bin/php /home/botmsvuc/www.botteghe-contemporanee.com/www.amaiora.com/source/modules/rs/cronjobmanager/cronjobmanager/start.php
+#!/bin/bash
+/usr/local/php7.4/bin/php /PATH/TO/YOUR/SHOP/ROOT/source/modules/rs/cronjobmanager/cronjobmanager/start.php
